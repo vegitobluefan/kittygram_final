@@ -12,7 +12,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['localhost', '123.123.123.123', '127.0.0.1', 'kittygramdaniyar.ddnsking.com']
+ALLOWED_HOSTS = ['localhost', '130.193.54.110', '127.0.0.1', 'kittygramdaniyar.ddnsking.com']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -96,6 +96,7 @@ USE_TZ = True
 
 
 STATIC_URL = '/static/'
+STATIC_ROOT = BASE_DIR / 'collected_static'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

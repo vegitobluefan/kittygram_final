@@ -15,13 +15,13 @@ services:
     image: daniyarchik/kittygram_backend
     env_file: .env
     volumes:
-      - static_volume:/static
+      - static_volume:/backend_static
       - media_volume:/media
   frontend:
     image: daniyarchik/kittygram_frontend
-    command: cp -r /app/build/. /static/
+    command: cp -r /app/build/. /frontend_static/
     volumes:
-      - static_volume:/static
+      - static_volume:/frontend_static
   gateway:
     image: nginx:1.22.1
     volumes:
