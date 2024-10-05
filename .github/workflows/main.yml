@@ -182,4 +182,4 @@ jobs:
       with:
         to: ${{ secrets.TELEGRAM_TO }}
         token: ${{ secrets.TELEGRAM_TOKEN }}
-        message: ${{ github.actor }} внёс изменения - ${{  github.event.commits[0].message }}. Ссылка на коммит - ${{ https://github.com/${{ github.repository }}/commit/${{github.sha}} }}
+        message: ${{ github.actor }} внёс изменения - ${{  github.event.commits[0].message }}. Ссылка на коммит - https://github.com/${{ github.repository }}/commit/${{github.sha}}
