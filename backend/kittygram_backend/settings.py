@@ -1,4 +1,3 @@
-# flake8: noqa
 import os
 from pathlib import Path
 
@@ -12,9 +11,7 @@ SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
 DEBUG = os.getenv('DEBUG_STATUS', False)
 
-ALLOWED_HOSTS = [
-    'localhost', '127.0.0.1', '130.193.54.110', 'kittygramdaniyar.ddnsking.com'
-]
+ALLOWED_HOSTS = str(os.getenv('ALLOWED_HOSTS')).split(',')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
