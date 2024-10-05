@@ -1,8 +1,8 @@
 import os
 from pathlib import Path
 
+from decouple import Csv, config
 from dotenv import load_dotenv
-from decouple import config, Csv
 
 load_dotenv()
 
@@ -24,6 +24,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework',
     'djoser',
+    'decouple'
     'cats.apps.CatsConfig',
 ]
 
