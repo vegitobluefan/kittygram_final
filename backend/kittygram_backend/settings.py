@@ -7,14 +7,13 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-DEBUG = os.getenv('DEBUG_STATUS')
+SECRET_KEY = 'django-insecure-cg6*%6d51ef8f#4!r3*$vmxm4)abgjw8mo!4y-q*uq1!4$-89$'  # os.getenv('DJANGO_SECRET_KEY')
+
+DEBUG = True  # os.getenv('DEBUG_STATUS')
 
 ALLOWED_HOSTS = [
-    'localhost', '127.0.0.1',
-    os.getenv('ALLOWED_IP'), os.getenv('ALLOWED_DOMAIN')
+    'localhost', '127.0.0.1', '130.193.54.110', 'kittygramdaniyar.ddnsking.com'
 ]
-
-SECRET_KEY = os.getenv('DJANGO_SECRET_KEY')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
