@@ -1,18 +1,19 @@
 import os
 from pathlib import Path
 
-from decouple import Csv, config
 from dotenv import load_dotenv
+import environ
 
 load_dotenv()
+env = environ.Env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = str(os.getenv('SECRET_KEY'))
 
-DEBUG = config('DEBUG_STATUS', cast=bool)
+DEBUG = os.getenv('DEBUG_STATUS', False)
 
-ALLOWED_HOSTS = config('ALLOWED_HOSTS', cast=Csv())  # os.getenv('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = env.list('ALLOWED_HOSTS')
 
 INSTALLED_APPS = [
     'django.contrib.admin',
