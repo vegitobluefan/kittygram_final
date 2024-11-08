@@ -48,6 +48,9 @@ sudo docker compose -f docker-compose.production.yml up -d
 ```
 - Примените миграции:
 ```
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py makemigrations
+```
+```
 sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
 ```
 - Соберите статику:
