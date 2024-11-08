@@ -1,26 +1,57 @@
-#  Как работать с репозиторием финального задания
+# Проект Kittygram
+С помощью данного сервиса пользователи могут добавлять своих котов, их достижения, выбирать цвет питомца и даже прикреплять их фотографии!
 
-## Что нужно сделать
+## Задачи, выполненные с помощью сервиса GitHub Actions:
+- Настройка и запуск проекта Kittygram в контейнерах
+- Настройка автоматического тестирования и деплой этого проекта на удалённый сервер
+ ## При пуше в ветку main:
+- Проект тестируется
+- В случае успешного прохождения тестов образы обновляюься на Docker Hub
+- На сервере запускаются контейнеры из обновлённых образов.
 
-Настроить запуск проекта Kittygram в контейнерах и CI/CD с помощью GitHub Actions
-
-## Как проверить работу с помощью автотестов
-
-В корне репозитория создайте файл tests.yml со следующим содержимым:
-```yaml
-repo_owner: ваш_логин_на_гитхабе
-kittygram_domain: полная ссылка (https://доменное_имя) на ваш проект Kittygram
-taski_domain: полная ссылка (https://доменное_имя) на ваш проект Taski
-dockerhub_username: ваш_логин_на_докерхабе
+# Запуск проекта в контейнерах
+### Выполните последующие действия:
+- Подключитесь к удалённому серверу
+- Создайте директорию kittygram:
 ```
-
-Скопируйте содержимое файла `.github/workflows/main.yml` в файл `kittygram_workflow.yml` в корневой директории проекта.
-
-Для локального запуска тестов создайте виртуальное окружение, установите в него зависимости из backend/requirements.txt и запустите в корневой директории проекта `pytest`.
-
-## Чек-лист для проверки перед отправкой задания
-
-- Проект Taski доступен по доменному имени, указанному в `tests.yml`.
-- Проект Kittygram доступен по доменному имени, указанному в `tests.yml`.
-- Пуш в ветку main запускает тестирование и деплой Kittygram, а после успешного деплоя вам приходит сообщение в телеграм.
-- В корне проекта есть файл `kittygram_workflow.yml`.
+mkdir kittygram
+```
+- Установите Docker compose:
+```
+sudo apt update
+sudo apt install curl
+curl -fSL https://get.docker.com -o get-docker.sh
+sudo sh ./get-docker.sh
+sudo apt-get install docker-compose-plugin
+```
+- Создайте .env файл и наполните его по примеру:
+```
+touch .env
+```
+```
+SECRET_KEY=...
+DEBUG_STATUS=True
+ALLOWED_HOSTS=...
+POSTGRES_DB=...
+POSTGRES_USER=...
+POSTGRES_PASSWORD=...
+DB_NAME=...
+DB_PORT=5432
+DB_HOST=db
+```
+- Скопируйте docker-compose файл и запустите его:
+```
+scp -i path_to_SSH/SSH_name docker-compose.production.yml username@server_ip:/home/username/kittygram/docker-compose.production.yml
+```
+```
+sudo docker compose -f docker-compose.production.yml up -d
+```
+- Примените миграции:
+```
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py migrate
+```
+- Соберите статику:
+```
+sudo docker compose -f docker-compose.production.yml exec backend python manage.py collectstatic
+```
+# Разработчик: [Аринов Данияр](https://github.com/vegitobluefan)
